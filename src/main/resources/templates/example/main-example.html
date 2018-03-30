@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="example/example :: _head('FadSpringer | Example')"></head>
+    <body>
+        <div th:replace="example/example :: _navbar"></div>
+        <main class="container">
+            <h1>Test</h1>
+        </main>
+        <div th:replace="example/example :: _scripts"></div>
+    </body>
 </html>
