@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PageController {
 
     @GetMapping("/")
-    @ResponseBody
     public String welcome() {
-        return "Welcome to FadSpringer";
+        return "welcome";
     }
 
-
+    @GetMapping("/example")
+    public String example() {
+        return "example/main-example";
+    }
 
 }

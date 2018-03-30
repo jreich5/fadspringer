@@ -10,15 +10,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AuthController {
 
     @GetMapping("/login")
-    @ResponseBody
     public String loginForm() {
-        return "Login form";
+        return "auth/login";
     }
 
     @PostMapping("/login")
     @ResponseBody
     public String login() {
         return "Login";
+    }
+
+    @GetMapping("/register")
+    public String registerForm() {
+        return "auth/register";
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public String register() {
+        return "Create user";
     }
 
     @PostMapping("/logout")

@@ -9,33 +9,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     @GetMapping("/users")
-    @ResponseBody
     public String index() {
-        return "User index";
+        return "user/index";
     }
 
     @GetMapping("/users/{id}")
-    @ResponseBody
     public String show() {
-        return "User show";
+        return "user/show";
     }
 
     @GetMapping("/users/{id}/edit")
-    @ResponseBody
     public String edit() {
-        return "Edit ad";
+        return "user/edit";
     }
 
     @PostMapping("/users/{id}/edit")
     @ResponseBody
     public String update() {
         return "Update ad";
-    }
-
-    @GetMapping("/users/create")
-    @ResponseBody
-    public String create() {
-        return "User create";
     }
 
     @GetMapping("/users/{id}/delete")

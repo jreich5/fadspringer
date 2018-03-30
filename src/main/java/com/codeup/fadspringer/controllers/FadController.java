@@ -10,40 +10,41 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FadController {
 
     @GetMapping("/fads")
-    @ResponseBody
     public String index() {
-        return "Fad index";
+        return "fad/index";
     }
 
     @GetMapping("/fads/{id}")
-    @ResponseBody
     public String show() {
-        return "Fad show";
+        return "fad/show";
     }
 
     @GetMapping("/fads/{id}/edit")
-    @ResponseBody
     public String edit() {
-        return "Edit ad";
+        return "fad/edit";
     }
 
     @PostMapping("/fads/{id}/edit")
     @ResponseBody
     public String update() {
-        return "Update ad";
+        return "fad edit";
     }
 
     @GetMapping("/fads/create")
-    @ResponseBody
     public String create() {
-        return "Fad create";
+        return "fad/create";
     }
 
-    @GetMapping("/fads/{id}/delete")
+    @PostMapping("/fads/create")
+    @ResponseBody
+    public String insert() {
+        return "Insert Fad";
+    }
+
+    @PostMapping("/fads/{id}/delete")
     @ResponseBody
     public String delete() {
-        return "Fad delete";
+        return "Delete fad";
     }
-
 
 }
