@@ -11,7 +11,9 @@ public class FadController {
 
     @GetMapping("/fads")
     public String index() {
+
         return "fad/index";
+
     }
 
     @GetMapping("/fads/{id}")
