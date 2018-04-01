@@ -1,15 +1,16 @@
 package com.codeup.fadspringer.db;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-class FadService {
-    private CrudRepository<Fad, Long> fadsDao;
+public class FadSvc {
+    private FadRepository fadsDao;
 
-    public FadService(CrudRepository<Fad, Long> fadsDao) {
+    @Autowired
+    public FadSvc(FadRepository fadsDao) {
         this.fadsDao = fadsDao;
     }
 

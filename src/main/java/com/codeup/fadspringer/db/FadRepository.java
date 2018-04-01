@@ -1,4 +1,8 @@
 package com.codeup.fadspringer.db;
 
-public interface FadRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface FadRepository extends CrudRepository<Fad, Long> {
+
+
 }

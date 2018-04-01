@@ -1,7 +1,10 @@
 package com.codeup.fadspringer.controllers;
 
+import com.codeup.fadspringer.db.FadSvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,11 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class FadController {
 
+    private FadSvc fadSvc;
+
+    @Autowired
+    public FadController(FadSvc fadSvc) {
+        this.fadSvc = fadSvc;
+    }
+
     @GetMapping("/fads")
-    public String index() {
-
+    public String index(Model model) {
+        model.addAttribute("fads", fadSvc.findAll());
         return "fad/index";
-
     }
 
     @GetMapping("/fads/{id}")
