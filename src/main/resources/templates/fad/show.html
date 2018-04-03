@@ -7,7 +7,7 @@
     <h1>Fad Show</h1>
     <div class="card">
         <h3 th:text="${fad.title}"></h3>
-        <p th:text="${fad.description}"></p>
+        <p th:utext="${fad.description}"></p>
         <img width="400 " th:src="${fad.img_url}" />
         <p>Fad is passe? <span th:text="${fad.passe}"></span></p>
         <p>Posted by: <a th:href="@{'/users/' + ${fad.user.id}}" th:text="${fad.user.name}"></a></p>

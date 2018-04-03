@@ -3,6 +3,8 @@ package com.codeup.fadspringer.controllers;
 import com.codeup.fadspringer.db.Fad;
 import com.codeup.fadspringer.db.FadSvc;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +56,9 @@ public class FadController {
 
     @PostMapping("/fads/create")
     public RedirectView insert(@ModelAttribute Fad fad) {
+        String rawInput = fad.getDescription();
+        String parsed = Jsoup.clean(rawInput, Whitelist.basic());
+        fad.setDescription(parsed);
         fadSvc.save(fad);
         return new RedirectView("/fads");
     }
