@@ -1,5 +1,10 @@
 use fadspringer_db;
 
+ALTER TABLE fads DROP FOREIGN KEY `Fk_user`;
+
+TRUNCATE fads;
+TRUNCATE users;
+
 INSERT INTO users (name, email, password, created_at, updated_at)
 VALUES ('Bobby Bob', 'bobby@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS', NOW(), NOW()),
   ('Sally Smith', 'sally@email.com', '$2a$12$hMBHftmWPtdIWrgX1My8Wuhz9wrZULG5MrqmoVwCSBH24t/DDlPNS', NOW(), NOW()),
@@ -43,3 +48,8 @@ VALUES
 
 (1, 'Nu Metal', 'Nu metal (also known as nü-metal and aggro-metal) is a form of alternative metal that combines elements of heavy metal music with elements of other music genres such as hip hop, alternative rock, funk, industrial and grunge. Nu metal bands have drawn elements and influences from a variety of musical styles, including multiple genres of heavy metal. - (https://en.wikipedia.org/wiki/Nu_metal)
 ', '/img/nu-metal.jpg', true, NOW(), NOW());
+
+
+ALTER TABLE fads
+ADD CONSTRAINT FK_user
+FOREIGN KEY (user_id) REFERENCES users(id);
