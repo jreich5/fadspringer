@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/master :: _head('FadSpringer | Create Fad')"></head>
+
 <body>
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
     <h1>Create Fad</h1>
+    <form action="/fads/create" method="POST" th:object="${fad}">
+
+        <div th:replace="fragments/fad-form :: _form">
+
+        </div>
+
+    </form>
+    
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello bootstrap 4',
+        tabsize: 2,
+        height: 100
+    });
+</script>
 </body>
 </html>

@@ -21,11 +21,10 @@ public class FadSvc {
         return fads;
     }
 
-//    public Fad save(Fad fad) {
-//        fad.setId(fad.size() + 1);
-//        fad.add(fad);
-//        return fad;
-//    }
+    public Fad save(Fad fad) {
+        fadsDao.save(fad);
+        return fad;
+    }
 //
 //    public Fad findOne(long id) {
 //        return fads.get(id - 1);

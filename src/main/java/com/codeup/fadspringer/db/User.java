@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name="users", uniqueConstraints = @UniqueConstraint(name = "UK_email", columnNames= { "email" } ))
 public class User {
 
     @Id
@@ -19,7 +19,7 @@ public class User {
     @Column(nullable=false, length=120)
     private String name;
 
-    @Column(nullable=false, length=120, unique=true)
+    @Column(nullable=false, length=120)
     private String email;
 
     @Column(nullable=false, length=120)

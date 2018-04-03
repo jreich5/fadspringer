@@ -1,13 +1,16 @@
 package com.codeup.fadspringer.controllers;
 
+import com.codeup.fadspringer.db.Fad;
 import com.codeup.fadspringer.db.FadSvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class FadController {
@@ -42,14 +45,15 @@ public class FadController {
     }
 
     @GetMapping("/fads/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("fad", new Fad());
         return "fad/create";
     }
 
     @PostMapping("/fads/create")
-    @ResponseBody
-    public String insert() {
-        return "Insert Fad";
+    public RedirectView insert(@ModelAttribute Fad fad) {
+        fadSvc.save(fad);
+        return new RedirectView("/fads");
     }
 
     @PostMapping("/fads/{id}/delete")

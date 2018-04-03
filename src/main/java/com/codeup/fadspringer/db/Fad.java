@@ -24,6 +24,7 @@ public class Fad {
     @Column(length=2083)
     private String img_url = "http://via.placeholder.com/300x300";
 
+    @Column(nullable=false, columnDefinition = "boolean default false")
     private Boolean passe;
 
     @CreationTimestamp
@@ -33,7 +34,7 @@ public class Fad {
     private Timestamp updated_at;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id", foreignKey=@ForeignKey(name = "Fk_user"))
     private User user;
 
     public Fad() {}
