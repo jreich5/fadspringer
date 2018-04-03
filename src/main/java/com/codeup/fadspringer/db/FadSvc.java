@@ -25,10 +25,10 @@ public class FadSvc {
         fadsDao.save(fad);
         return fad;
     }
-//
-//    public Fad findOne(long id) {
-//        return fads.get(id - 1);
-//    }
+
+    public Fad findOne(long id) {
+        return fadsDao.findOne(id);
+    }
 //
 //    private void createAds() {
 //        // create some ad objects and add them to the ads list

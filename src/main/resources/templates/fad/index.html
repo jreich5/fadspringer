@@ -6,14 +6,15 @@
 <main class="container">
     <h1>Fad Index</h1>
 
-
     <div th:each="fad : ${fads}">
-        <div class="card">
-            <h3 th:text="${fad.title}" />
-            <p th:text="${fad.description}" />
-            <img width="400 " th:src="${fad.img_url}" />
-            <p>Fad is passe? <span th:text="${fad.passe}"></span></p>
-        </div>
+        <a th:href="@{'fads/' + ${fad.id}}">
+            <div class="card">
+                <h3 th:text="${fad.title}"></h3>
+                <p th:text="${fad.description}"></p>
+                    <img width="400 " th:src="${fad.img_url}" />
+                <p>Fad is passe? <span th:text="${fad.passe}"></span></p>
+            </div>
+        </a>
     </div>
 
 </main>

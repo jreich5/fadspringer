@@ -5,6 +5,18 @@
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
     <h1>Fad Show</h1>
+    <div class="card">
+        <h3 th:text="${fad.title}"></h3>
+        <p th:text="${fad.description}"></p>
+        <img width="400 " th:src="${fad.img_url}" />
+        <p>Fad is passe? <span th:text="${fad.passe}"></span></p>
+        <p>Posted by: <a th:href="@{'/users/' + ${fad.user.id}}" th:text="${fad.user.name}"></a></p>
+        <a th:href="@{'/fads/' + ${fad.id} + '/edit'}" class="btn btn-warning">Edit</a>
+
+        <form th:action="@{'/fads/' + ${fad.id} + '/delete'}" method="POST">
+            <button class="btn btn-danger btn-block">Submit</button>
+        </form>
+    </div>
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
 </body>

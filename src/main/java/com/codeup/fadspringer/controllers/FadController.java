@@ -6,10 +6,7 @@ import com.codeup.fadspringer.db.FadSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -29,7 +26,8 @@ public class FadController {
     }
 
     @GetMapping("/fads/{id}")
-    public String show() {
+    public String show(@PathVariable Long id, Model model) {
+        model.addAttribute("fad", fadSvc.findOne(id));
         return "fad/show";
     }
 
