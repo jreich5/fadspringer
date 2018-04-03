@@ -24,7 +24,7 @@ public class Fad {
     @Column(length=2083)
     private String img_url = "http://via.placeholder.com/300x300";
 
-    @Column(nullable=false, columnDefinition = "boolean default false")
+    @Column(columnDefinition = "boolean default false")
     private Boolean passe;
 
     @CreationTimestamp

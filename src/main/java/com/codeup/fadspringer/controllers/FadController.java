@@ -32,14 +32,18 @@ public class FadController {
     }
 
     @GetMapping("/fads/{id}/edit")
-    public String edit() {
+    public String edit(@PathVariable Long id, Model model) {
+        model.addAttribute("fad", fadSvc.findOne(id));
         return "fad/edit";
     }
 
     @PostMapping("/fads/{id}/edit")
-    @ResponseBody
-    public String update() {
-        return "fad edit";
+    public RedirectView update(@ModelAttribute Fad fad, @PathVariable Long id) {
+        Fad oldFad = fadSvc.findOne(id);
+        fad.setCreated_at(oldFad.getCreated_at());
+        fad.setUser(oldFad.getUser());
+        fadSvc.save(fad);
+        return new RedirectView("/fads/" + id);
     }
 
     @GetMapping("/fads/create")

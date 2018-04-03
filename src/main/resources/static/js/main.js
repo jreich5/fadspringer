@@ -1,1 +1,8 @@
-console.log("Test");
+(function() {
+
+    "use strict";
+
+
+
+
+})();
