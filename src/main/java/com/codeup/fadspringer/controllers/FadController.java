@@ -58,7 +58,12 @@ public class FadController {
     public RedirectView insert(@ModelAttribute Fad fad) {
         String rawInput = fad.getDescription();
         String parsed = Jsoup.clean(rawInput, Whitelist.basic());
+
         fad.setDescription(parsed);
+
+        // will need to update model logic to get user by id to set for fad user
+
+//        fad.setUser(1);
         fadSvc.save(fad);
         return new RedirectView("/fads");
     }
