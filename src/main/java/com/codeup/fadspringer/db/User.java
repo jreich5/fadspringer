@@ -36,6 +36,13 @@ public class User {
 
     public User() {}
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        password = copy.password;
+    }
+
+
     public long getId() {
         return id;
     }
@@ -53,6 +60,10 @@ public class User {
     }
 
     public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
         return email;
     }
 

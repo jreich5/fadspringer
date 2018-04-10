@@ -14,27 +14,27 @@ public class AuthController {
         return "auth/login";
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String login() {
-        return "Login";
-    }
+//    @PostMapping("/login")
+//    @ResponseBody
+//    public String login() {
+//        return "Login";
+//    }
 
-    @GetMapping("/register")
-    public String registerForm() {
-        return "auth/register";
-    }
+//    @GetMapping("/register")
+//    public String registerForm() {
+//        return "auth/register";
+//    }
+//
+//    @PostMapping("/register")
+//    @ResponseBody
+//    public String register() {
+//        return "Create user";
+//    }
 
-    @PostMapping("/register")
-    @ResponseBody
-    public String register() {
-        return "Create user";
-    }
-
-    @PostMapping("/logout")
-    @ResponseBody
-    public String logout() {
-        return "Logout";
-    }
+//    @GetMapping("/logout")
+//    @ResponseBody
+//    public String logout() {
+//        return "Logout";
+//    }
 
 }

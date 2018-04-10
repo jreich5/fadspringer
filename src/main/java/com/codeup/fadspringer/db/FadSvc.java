@@ -7,10 +7,10 @@ import java.util.List;
 
 @Service
 public class FadSvc {
-    private FadRepository fadsDao;
+    private Fads fadsDao;
 
     @Autowired
-    public FadSvc(FadRepository fadsDao) {
+    public FadSvc(Fads fadsDao) {
         this.fadsDao = fadsDao;
     }
 
