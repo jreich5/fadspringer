@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/master :: _head('FadSpringer | User Index')"></head>
+<head th:replace="fragments/master :: _head('User Index')"></head>
 <body>
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
     <h1>User Index</h1>
+    <div th:each="user : ${users}">
+        <a th:href="@{'users/' + ${user.id}}">
+            <div class="card">
+                <h3 th:text="${user.name}"></h3>
+                <p th:utext="${user.email}"></p>
+            </div>
+        </a>
+    </div>
+
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
 </body>

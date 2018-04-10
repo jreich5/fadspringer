@@ -1,48 +1,57 @@
 package com.codeup.fadspringer.controllers;
 
 import com.codeup.fadspringer.db.User;
+import com.codeup.fadspringer.db.UserSvc;
 import com.codeup.fadspringer.db.Users;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
 
-
-    private Users users;
+    private Users usersDao;
+    private UserSvc usersSvc;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(Users users, PasswordEncoder passwordEncoder) {
-        this.users = users;
+    public UserController(Users users, PasswordEncoder passwordEncoder, UserSvc usersSvc) {
+        this.usersDao = users;
         this.passwordEncoder = passwordEncoder;
+        this.usersSvc = usersSvc;
     }
 
     @GetMapping("/register")
     public String showSignupForm(Model model){
+
         model.addAttribute("user", new User());
         return "auth/register";
+    }
+
+    @GetMapping("/profile")
+    public String showProfileForm(Model model){
+        User user = usersSvc.getLoggedInUser();
+        model.addAttribute("user", user);
+        return "user/profile";
     }
 
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        users.save(user);
+        usersDao.save(user);
         return "redirect:/login";
     }
 
     @GetMapping("/users")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("users", usersDao.findAll());
         return "user/index";
     }
 
     @GetMapping("/users/{id}")
-    public String show() {
+    public String show(@PathVariable long id, Model model) {
+        model.addAttribute("user", usersDao.findById(id));
         return "user/show";
     }
 

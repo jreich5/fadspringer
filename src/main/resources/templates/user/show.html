@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/master :: _head('FadSpringer | User Show')"></head>
+<head th:replace="fragments/master :: _head('User Show')"></head>
 <body>
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
     <h1>User Show</h1>
+    <div class="card">
+        <h3 th:text="${user.name}"></h3>
+        <p th:utext="${user.email}"></p>
+        <p th:utext="${user.created_at}"></p>
+    </div>
+
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
 </body>

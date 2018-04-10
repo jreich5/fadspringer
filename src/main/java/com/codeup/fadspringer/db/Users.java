@@ -9,4 +9,7 @@ public interface Users extends CrudRepository<User, Long> {
 
 //    @Query(value = "SELECT * FROM users where id = ?", nativeQuery = true)
 //    User findByCustom(String something);
+
+    User findById(long id);
+
 }
