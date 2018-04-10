@@ -5,8 +5,14 @@ import com.codeup.fadspringer.db.UserSvc;
 import com.codeup.fadspringer.db.Users;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
@@ -56,20 +62,53 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}/edit")
-    public String edit() {
+    public String edit(Model model) {
+        model.addAttribute("user", usersSvc.getLoggedInUser());
         return "user/edit";
     }
 
     @PostMapping("/users/{id}/edit")
-    @ResponseBody
-    public String update() {
-        return "Update ad";
+    public String update(HttpServletRequest request, HttpServletResponse response, @PathVariable long id, @RequestParam String name, @RequestParam String email, @RequestParam String password) {
+
+        // not using form model binding to avoid changing password unless needed
+        User originalUser = usersDao.findById(id);
+
+        originalUser.setName(name);
+
+        boolean emailChanged = false;
+
+        if (!originalUser.getEmail().equals(email)) {
+            originalUser.setEmail(email);
+            emailChanged = true;
+        }
+        if (!password.equals("")) {
+            originalUser.setPassword(passwordEncoder.encode(password));
+        }
+
+        usersDao.save(originalUser);
+
+        if (emailChanged) {
+            try {
+                request.logout();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "redirect:/profile";
+
     }
 
-    @GetMapping("/users/{id}/delete")
-    @ResponseBody
-    public String delete() {
-        return "User delete";
+    @Transactional
+    @PostMapping("/users/{id}/delete")
+    public String delete(@PathVariable long id, HttpServletRequest request) {
+        usersDao.deleteById(id);
+        try {
+            request.logout();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/login";
     }
 
 }

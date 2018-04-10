@@ -12,4 +12,6 @@ public interface Users extends CrudRepository<User, Long> {
 
     User findById(long id);
 
+    void deleteById(long id);
+
 }

@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/master :: _head('FadSpringer | User Edit')"></head>
+<head th:replace="fragments/master :: _head('Profile Edit')"></head>
 <body>
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
-    <h1>User Edit</h1>
+    <h1>Edit Profile</h1>
+
+    <hr />
+
+    <h3>Edit Name and Email</h3>
+    <form th:action="@{'/users/' + ${user.id} + '/edit'}" method="POST" th:object="${user}">
+        <label for="name">Name</label>
+        <input id="name" type="text" th:field="*{name}" th:value="${name}" placeholder="Enter name" />
+        <br />
+        <label for="email">Email</label>
+        <input id="email" type="text" th:field="*{email}" th:value="${email}" placeholder="Enter email" />
+        <br />
+        <input type="password" th:field="*{password}" th:value="${password}" placeholder="Enter password" />
+        <button class="btn btn-warning">Update Profile</button>
+    </form>
+
+    <hr />
+    <h3>Delete Profile</h3>
+    <form th:action="@{'/users/' + ${user.id} + '/delete'}" method="POST" th:object="${user}">
+        <button class="btn btn-danger">Delete Account</button>
+    </form>
+
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
 </body>

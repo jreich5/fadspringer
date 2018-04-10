@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/master :: _head('FadSpringer | User Profile')"></head>
+<head th:replace="fragments/master :: _head('User Profile')"></head>
 <body>
 <div th:replace="fragments/master :: _navbar"></div>
 <main class="container">
     <h1>User Profile</h1>
     <div class="card">
         <h3 th:text="${user.name}"></h3>
-        <p th:utext="${user.email}"></p>
-        <p th:utext="${user.created_at}"></p>
+        <p th:text="${user.email}"></p>
+        <p th:text="${user.created_at}"></p>
+        <a th:href="@{'/users/' + ${user.id} + '/edit'}" class="btn btn-warning">Edit</a>
     </div>
 </main>
 <div th:replace="fragments/master :: _scripts"></div>
